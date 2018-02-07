@@ -1,4 +1,8 @@
-
-	$("#Phase-div").html("<%= escape_javascript(render partial: 'rand_phase_heading') %>");
-	$("#Phase-div").append("<%= escape_javascript(render partial: 'random_phase') %>");
+	
+	if (<%= (((Phase.ids).all? { |e| session[:fetched_record].include?(e) })) || @message.present? %>){
+		alert("No more element in DB!");
+	}else{
+		$("#Phase-div").html("<%= escape_javascript(render partial: 'rand_phase_heading') %>");
+		$("#Phase-div").append("<%= escape_javascript(render partial: 'random_phase') %>");
+	}
 		

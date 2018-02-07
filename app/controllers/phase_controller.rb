@@ -8,16 +8,22 @@ class PhaseController < ApplicationController
 	#get_rendom_phase_path
 	def get_rendom_phase
 		if (Phase.ids).all? { |e| session[:fetched_record].include?(e) }
-			 errors.add(:name, message: "No more element in db") 
+			 @message = "No more element in DB!"
 		else
-			id  = rand(Phase.count)
-			if !(session[:fetched_record].include?(id)) && id > 0
-				session[:fetched_record] << id
-				@phase = Phase.find_by_id id 
-			elsif (session[:fetched_record].include?(id))
-				id  = rand(Phase.count)
-			end
+			id  = unique_id(Phase.get_rand_id)
+			@phase = Phase.find_by_id id
 		end
 	end
+
+	private
+		def unique_id id 
+			return if (Phase.ids).all? { |e| session[:fetched_record].include?(e) }
+			if !(session[:fetched_record].include?(id)) && id > 0
+				session[:fetched_record] << id
+				return id
+			else
+				unique_id(Phase.get_rand_id)
+			end
+		end
 
 end
