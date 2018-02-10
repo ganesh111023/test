@@ -5,13 +5,13 @@
 </div>
 <div class="row ">
 	<div class="col-md-12 text-center">
-		<%= link_to "Clear phase", "#", class: "btn btn-danger mt-2"%>
+		<%= link_to "Clear phase", clear_path, class: "btn btn-danger mt-2"%>
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-md-12" id="Phase-div">
-		<h1 class="text-center">There are 10 phrases left in the database.</h1>
+		<h1 class="text-center"><%= render 'rand_phase_heading' %></h1>
+		<div  class="text-center" "><%= render 'random_phase'%></div>
 	</div>
-	<div id="phase"></div>
 </div>

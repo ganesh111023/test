@@ -2,7 +2,6 @@ class PhaseController < ApplicationController
 
 	def index
 		@phase = Phase.all
-		session[:fetched_record] = []
 	end
 
 	#get_rendom_phase_path
@@ -15,6 +14,11 @@ class PhaseController < ApplicationController
 		end
 	end
 
+	def clear
+		session[:fetched_record] = []
+		redirect_to root_path
+	end
+
 	private
 		def unique_id id 
 			return if (Phase.ids).all? { |e| session[:fetched_record].include?(e) }
@@ -24,6 +28,7 @@ class PhaseController < ApplicationController
 			else
 				unique_id(Phase.get_rand_id)
 			end
+
 		end
 
 end

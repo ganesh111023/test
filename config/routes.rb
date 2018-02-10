@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'phase#index'
   get '/get_rendom_phase' => "phase#get_rendom_phase"
+  get '/clear' => "phase#clear"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
